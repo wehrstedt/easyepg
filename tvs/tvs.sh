@@ -41,7 +41,8 @@ then
 	exit 0
 fi
 
-if ! curl --write-out %{http_code} --silent --output /dev/null https://live.tvspielfilm.de | grep -q "200"
+CHANNEL_LIST_URL="https://live.tvspielfilm.de/static/content/channel-list/livetv"
+if ! curl --write-out %{http_code} --silent --output /dev/null $CHANNEL_LIST_URL | grep -q "200"
 then
 	printf "Service provider unavailable!\n\n"
 	exit 0
@@ -68,7 +69,7 @@ rm mani/* 2> /dev/null
 #
 
 printf "\rFetching channel list...               "
-curl --compressed -s https://live.tvspielfilm.de/static/content/channel-list/livetv > /tmp/workfile
+curl --compressed -s $CHANNEL_LIST_URL > /tmp/workfile
 jq '.' /tmp/workfile > /tmp/chlist
 sed -i -e 1c'\{\n "items": \[' /tmp/chlist
 echo '}' >> /tmp/chlist
