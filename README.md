@@ -1,4 +1,4 @@
-PLEASE NOTE THAT THIS VERSION OF EASYEPG WILL NO LONGER BE MAINTAINED.
+Fork of easyepg because main project is no longer maintained
 
 # easyEPG
 WebGrab++ alternative :)
